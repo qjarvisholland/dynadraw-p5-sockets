@@ -34,7 +34,7 @@ function setup () {
     createCanvas(900,900);
 
 
-    socket - io.connect('https://free-wall.herokuapp.com/');
+    socket = io.connect('https://free-wall.herokuapp.com/');
 
      socket.on('mouse',
     // When we receive data
