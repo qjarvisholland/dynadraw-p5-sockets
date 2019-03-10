@@ -13,7 +13,7 @@ var px, py;       // current position of spring
 
 var amDrawing; // boolean switch for dislpaying line
 
-
+var socket;
 
 function setup () {
     px = mouseX;    // current position of spring
@@ -32,6 +32,25 @@ function setup () {
     min_brush = 4.0;     // minimum stroke thickness (1 -> 64)
 
     createCanvas(900,900);
+
+
+    socket - io.connect('https://free-wall.herokuapp.com/');
+
+     socket.on('mouse',
+    // When we receive data
+    function(data) {
+      console.log("Got: " + data.x + " " + data.y);
+     if (data.theyDrawing == 1){
+    push();
+    strokeWeight(data.brush);
+    translate(data.x,data.y);
+    line(data.x-data.prevx,data.y-data.prevy,0,0);
+    pop();
+
+
+}
+    }
+  );
 }
 
 function draw(){
@@ -61,18 +80,21 @@ var vh = sqrt(vx*vx + vy*vy);                       // Compute the (Pythagorean)
     // noStroke();
     // fill(30);
     // line (ppx, ppy, px,  py);
-    strokeWeight(brush);
+    
 
     if (amDrawing == 1){
+      sendmouse(px,py);
     //line(ppx,ppy,px,py);
     push();
+    strokeWeight(brush);
     translate(px,py);
    // rotate(0.3);
     //quad(0,0,0,10,10,15,0,15);
    // rect(-brush/2,-1,brush/2,1);
     line(px-ppx,py-ppy,0,0);
     pop();
-}
+  }
+
 //line(vx,vy,px,py);
 
 
@@ -99,4 +121,22 @@ function resetDyna(){
     vy = 0;
     old_brush = min_brush;
   
+}
+
+function sendmouse(xPos, yPos,prevxPos,prevyPos,brushWidth,theyDrawing) {
+  // We are sending!
+  console.log("sendmouse: " + xpos + " " + ypos);
+  
+  // Make a little object with  and y
+  var data = {
+    x: xPos,
+    y: yPos,
+    prevx: prevxPos,
+    prevy: prevyPos,
+    brush: brushWidth,
+    theyDrawing: theyDrawing
+  };
+
+  // Send that object to the socket
+  socket.emit('mouse',data);
 }
