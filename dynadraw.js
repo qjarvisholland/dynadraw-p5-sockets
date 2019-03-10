@@ -40,7 +40,6 @@ function setup () {
     // When we receive data
     function(data) {
       console.log("Got: " + data.x + " " + data.y);
-     if (data.theyDrawing == 1){
     push();
     strokeWeight(data.brush);
     translate(data.x,data.y);
@@ -48,9 +47,9 @@ function setup () {
     pop();
 
 
-}
-    }
-  );
+        }
+      
+    );
 }
 
 function draw(){
@@ -83,7 +82,7 @@ var vh = sqrt(vx*vx + vy*vy);                       // Compute the (Pythagorean)
     
 
     if (amDrawing == 1){
-      sendmouse(px,py);
+      sendmouse(px,py,ppx,ppy,brush,amDrawing);
     //line(ppx,ppy,px,py);
     push();
     strokeWeight(brush);
