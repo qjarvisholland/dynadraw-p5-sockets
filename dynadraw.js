@@ -1,3 +1,10 @@
+/* based on Paul Haeberli's 1989 Dynadraw method for smoothing mouse input
+
+ported to P5.JS and published by Quinn JH ( quinnjh.net s)
+*/
+
+
+
 var px, py;       // current position of spring
   var vx, vy;       // current velocity
   var ppx, ppy;     // previous position of spring
@@ -24,12 +31,12 @@ function setup () {
     vy = 0;
     old_brush = min_brush; // to change brush size smoothly (+/- 1)
 
-    k = 0.06;            // bounciness, stiffness of spring (0.01 -> 1.0)
+    k = 0.07;            // bounciness, stiffness of spring (0.01 -> 1.0)
     damping = 0.78;      // friction (smorzamento) (0.01, 1.00)
-    ductus = 0.5;        // this constant relates stroke width to speed (0.0 -> 5.0)
+    ductus = 0.9;        // this constant relates stroke width to speed (0.0 -> 5.0)
     mass = 1.0;          // mass of simulated pen (0.1 -> 5.0)
     max_brush = 18.0;    // maximum stroke thickness (1 -> 64)
-    min_brush = 4.0;     // minimum stroke thickness (1 -> 64)
+    min_brush = 5.0;     // minimum stroke thickness (1 -> 64)
 
     createCanvas(900,900);
 
