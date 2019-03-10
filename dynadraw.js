@@ -31,7 +31,7 @@ function setup () {
     vy = 0;
     old_brush = min_brush; // to change brush size smoothly (+/- 1)
 
-    k = 0.07;            // bounciness, stiffness of spring (0.01 -> 1.0)
+    k = 0.09;            // bounciness, stiffness of spring (0.01 -> 1.0)
     damping = 0.58;      // friction (smorzamento) (0.01, 1.00)
     ductus = 0.9;        // this constant relates stroke width to speed (0.0 -> 5.0)
     mass = 1.0;          // mass of simulated pen (0.1 -> 5.0)
