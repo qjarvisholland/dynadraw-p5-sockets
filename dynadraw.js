@@ -125,7 +125,7 @@ function resetDyna(){
 
 function sendmouse(xPos, yPos,prevxPos,prevyPos,brushWidth,theyDrawing) {
   // We are sending!
-  console.log("sendmouse: " + xpos + " " + ypos);
+  console.log("sendmouse: " + xPos + " " + yPos);
   
   // Make a little object with  and y
   var data = {
