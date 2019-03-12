@@ -4,7 +4,7 @@ ported to P5.JS and published by Quinn JH ( quinnjh.net s)
 */
 
 
-
+var colorCount;
 var px, py;       // current position of spring
   var vx, vy;       // current velocity
   var ppx, ppy;     // previous position of spring
@@ -38,8 +38,8 @@ function setup () {
     max_brush = 18.0;    // maximum stroke thickness (1 -> 64)
     min_brush = 5.0;     // minimum stroke thickness (1 -> 64)
 
-    createCanvas(900,900);
-
+    createCanvas(2000,1400);
+// need to apply defaults on 
 
     socket = io.connect('https://free-wall.herokuapp.com/');
 
@@ -60,7 +60,8 @@ function setup () {
 }
 
 function draw(){
-
+textSize(32);
+text('FREE WALL - 2019 quinnjh CLICK TO DRAW , REFRESH TO CLEAR', 10, 30);
 
     var dy = py - mouseY;   // Compute displacement from the cursor
     var dx = px - mouseX;
@@ -81,7 +82,7 @@ var vh = sqrt(vx*vx + vy*vy);                       // Compute the (Pythagorean)
     if (brush > old_brush) {brush = old_brush+1;}         // smooth the change (+/- 1) and
     if (brush < old_brush) {brush = old_brush-1;}         // ... set the brush size.
     old_brush = brush;
-    //println(int(round(brush)));
+    //println(int(round(brush)));c
     //strokeWeight(brush);
     // noStroke();
     // fill(30);
@@ -94,6 +95,7 @@ var vh = sqrt(vx*vx + vy*vy);                       // Compute the (Pythagorean)
     push();
     strokeWeight(brush);
     translate(px,py);
+   // rotate(atan2(mouseX*75,mouseY*75));
    // rotate(0.3);
     //quad(0,0,0,10,10,15,0,15);
    // rect(-brush/2,-1,brush/2,1);
@@ -109,12 +111,32 @@ var vh = sqrt(vx*vx + vy*vy);                       // Compute the (Pythagorean)
 }
 
 function mousePressed(){
+
   amDrawing=1;
-  resetDyna();
+  
+}
+
+function keyPressed() {
+  if (key = 'b') {
+    colorCount = colorCount + 1;
+
+    if (colorCount = 1){
+      stroke(200,15,75);
+    } else if (colorCount = 2){
+      stroke(10,205,75);
+    } else if (colorCount = 3){
+      stroke(60,65,85);
+    } else if (colorCount = 4){
+      stroke(10,1,195);
+      colorCount = 0;
+    }
+    
+  }
 }
 
 function mouseClicked(){
   amDrawing=0;
+resetDyna();
 }
 
 function resetDyna(){
