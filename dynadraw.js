@@ -32,8 +32,8 @@ function setup () {
     old_brush = min_brush; // to change brush size smoothly (+/- 1)
 
     k = 0.2;            // bounciness, stiffness of spring (0.01 -> 1.0)
-    damping = 0.41;      // friction (smorzamento) (0.01, 1.00)
-    ductus = 0.8;        // this constant relates stroke width to speed (0.0 -> 5.0)
+    damping = 0.51;      // friction (smorzamento) (0.01, 1.00)
+    ductus = 1.2;        // this constant relates stroke width to speed (0.0 -> 5.0)
     mass = 0.9;          // mass of simulated pen (0.1 -> 5.0)
     max_brush = 18.0;    // maximum stroke thickness (1 -> 64)
     min_brush = 4.0;     // minimum stroke thickness (1 -> 64)
@@ -91,16 +91,22 @@ var vh = sqrt(vx*vx + vy*vy);                       // Compute the (Pythagorean)
 
     if (amDrawing == 1){
       sendmouse(px,py,ppx,ppy,brush,amDrawing);
-    //line(ppx,ppy,px,py);
-    push();
+    //
+    
     strokeWeight(brush);
-    translate(px,py);
-   // rotate(atan2(mouseX*75,mouseY*75));
+    line(ppx,ppy,px,py);
+    
+    for (var q = 0; q <= random(1,5), q++;){
+    push();
+    translate(ppx,ppy);
+    rotate(atan2(mouseX*PI,mouseY*PI));
    // rotate(0.3);
     //quad(0,0,0,10,10,15,0,15);
-   // rect(-brush/2,-1,brush/2,1);
-    line(px-ppx,py-ppy,0,0);
+    rect(-old_brush/4,brush/6+random(4),-old_brush/10-random(4),brush/10);
+   
+  //  line(px-ppx,py-ppy,0,0);
     pop();
+  }
   }
 
 //line(vx,vy,px,py);
@@ -111,7 +117,7 @@ var vh = sqrt(vx*vx + vy*vy);                       // Compute the (Pythagorean)
 }
 
 function mousePressed(){
-
+resetDyna();
   amDrawing=1;
   
 }
@@ -136,7 +142,7 @@ function keyPressed() {
 
 function mouseClicked(){
   amDrawing=0;
-resetDyna();
+
 }
 
 function resetDyna(){
