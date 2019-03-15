@@ -38,7 +38,7 @@ function setup () {
     max_brush = 18.0;    // maximum stroke thickness (1 -> 64)
     min_brush = 4.0;     // minimum stroke thickness (1 -> 64)
 
-    createCanvas(window.innerWidth, window.innerHeight);
+    createCanvas(window.innerWidth-20, window.innerHeight-20);
 // need to apply defaults on 
 
     socket = io.connect('https://free-wall.herokuapp.com/');
