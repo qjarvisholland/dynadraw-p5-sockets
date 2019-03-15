@@ -32,13 +32,13 @@ function setup () {
     old_brush = min_brush; // to change brush size smoothly (+/- 1)
 
     k = 0.2;            // bounciness, stiffness of spring (0.01 -> 1.0)
-    damping = 0.51;      // friction (smorzamento) (0.01, 1.00)
-    ductus = 0.9;        // this constant relates stroke width to speed (0.0 -> 5.0)
-    mass = 1.0;          // mass of simulated pen (0.1 -> 5.0)
+    damping = 0.41;      // friction (smorzamento) (0.01, 1.00)
+    ductus = 0.8;        // this constant relates stroke width to speed (0.0 -> 5.0)
+    mass = 0.9;          // mass of simulated pen (0.1 -> 5.0)
     max_brush = 18.0;    // maximum stroke thickness (1 -> 64)
-    min_brush = 5.0;     // minimum stroke thickness (1 -> 64)
+    min_brush = 4.0;     // minimum stroke thickness (1 -> 64)
 
-    createCanvas(2000,1400);
+    createCanvas(window.innerWidth, window.innerHeight);
 // need to apply defaults on 
 
     socket = io.connect('https://free-wall.herokuapp.com/');
@@ -48,7 +48,7 @@ function setup () {
     function(data) {
       console.log("Got: " + data.x + " " + data.y);
     push();
-    strokeWeight(data.brush);
+    strokeWeight(data.brush+2);
     translate(data.x,data.y);
     line(data.x-data.prevx,data.y-data.prevy,0,0);
     pop();
@@ -60,7 +60,7 @@ function setup () {
 }
 
 function draw(){
-textSize(32);
+textSize(12);
 text('FREE WALL - 2019 quinnjh CLICK TO DRAW , REFRESH TO CLEAR', 10, 30);
 
     var dy = py - mouseY;   // Compute displacement from the cursor
