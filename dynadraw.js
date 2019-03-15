@@ -31,7 +31,7 @@ function setup () {
     vy = 0;
     old_brush = min_brush; // to change brush size smoothly (+/- 1)
 
-    k = 0.2;            // bounciness, stiffness of spring (0.01 -> 1.0)
+    k = 0.2;            // stiffness of spring (0.01 -> 1.0)
     damping = 0.51;      // friction (smorzamento) (0.01, 1.00)
     ductus = 1.2;        // this constant relates stroke width to speed (0.0 -> 5.0)
     mass = 0.9;          // mass of simulated pen (0.1 -> 5.0)
@@ -47,17 +47,15 @@ function setup () {
     // When we receive data
     function(data) {
       console.log("Got: " + data.x + " " + data.y);
-    push();
-    strokeWeight(data.brush+2);
-    translate(data.x,data.y);
-    line(data.x-data.prevx,data.y-data.prevy,0,0);
-    pop();
-
-
-        }
-      
-    );
+ strokeWeight(data.brush);
+    stroke(0,30);
+    line(data.x,data.y,data.prevx,data.prevy);
+    
+ 
 }
+);
+}
+
 
 function draw(){
 textSize(12);
@@ -153,7 +151,7 @@ function resetDyna(){
     ppy = mouseY;
     vx = 0;
     vy = 0;
-    old_brush = min_brush;
+    old_brush = max_brush;
   
 }
 
