@@ -48,7 +48,7 @@ function setup () {
     function(data) {
       console.log("Got: " + data.x + " " + data.y);
  strokeWeight(data.brush);
-    stroke(0,30);
+    stroke(0,160);
     line(data.x,data.y,data.prevx,data.prevy);
     
  
@@ -96,6 +96,7 @@ var vh = sqrt(vx*vx + vy*vy);                       // Compute the (Pythagorean)
     
     for (var q = 0; q <= random(1,5), q++;){
     push();
+    stroke(0,255);
     translate(ppx,ppy);
     rotate(atan2(mouseX*PI,mouseY*PI));
    // rotate(0.3);
